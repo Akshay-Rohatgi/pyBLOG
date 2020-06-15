@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body>
+
+    <div class="login">
+        <form method="post">
+            <input type="text" placeholder="Username" id="username" name="username"
+                    value="{{request.form.username }}">
+            <input type="password" placeholder="Password" id="password" name="password"
+                value="{{request.form.password }}">
+            <input class="" type="submit" 
+                value="Login">
+        </form>
+    </div>
+
+</body>
+{% endblock %}
