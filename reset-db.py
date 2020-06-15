@@ -25,5 +25,7 @@ c.execute("""CREATE TABLE "Posts" (
 
 #pass = default_pass
 c.execute("INSERT INTO Admin VALUES ('admin_default', 'Linus Torvalds', 'b827ae8d71bf3ab400e3822a16041749')")
+c.execute("INSERT INTO Posts VALUES ('default_post', 'Linus Torvalds', '6/15/2020', 'First Post!')")
+c.execute("INSERT INTO Posts VALUES ('default_post_2', 'Linus Torvalds', '6/16/2020', 'Second Post!')")
 conn.commit()
 conn.close()
