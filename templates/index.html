@@ -5,16 +5,23 @@
 <body>
 
     <header class="banner">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
+        <div class="container h-75">
+            <div class="row h-75 align-items-center">
                 <div class="col-12 text-center">
+                    <h1 style="color: white; font-style: italic;" class="font-weight-light">Welcome to {{ name }}'s
+                        pyBLOG</h1>
                 </div>
             </div>
         </div>
     </header>
 
     <div>
-        <p>hello</p>
+        <section class="py-5">
+            <div class="container">
+                <h2 class="font-weight-light">{{ name }}</h2>
+                <p>{{ content }}</p>
+            </div>
+        </section>
     </div>
 
 </body>

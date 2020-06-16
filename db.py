@@ -103,3 +103,38 @@ def get_specific_post(post_title):
     except:
         conn.close() 
         return False
+
+def change_name(current_name, new_name, password):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    hashed = md5(password)
+
+    try:
+        c.execute("SELECT password FROM Admin WHERE name='" + current_name + "'")
+        password_rec = c.fetchone()[0]
+    except: 
+        return False
+    
+    if hashed != password_rec:
+        return False
+
+    try:
+        c.execute("UPDATE Admin SET name='" + new_name + "' WHERE name='" + current_name + "'")
+        conn.commit()
+        conn.close()
+    except: 
+        return False
+
+    return True
+
+def get_first_admin():
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try:    
+        c.execute("Select name From Admin LIMIT 1")
+        return c.fetchone()[0]
+    except: return False
