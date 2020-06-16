@@ -88,3 +88,18 @@ def change_password(current_username, password, new_password):
         return False
 
     return True
+
+def get_specific_post(post_title):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+    try:
+        c.execute("SELECT post_title, post_author, post_date, post_content FROM Posts WHERE post_title='" + post_title + "'")
+    except: 
+        return False
+    
+    try:
+        return c.fetchall()[0]
+    except:
+        conn.close() 
+        return False
