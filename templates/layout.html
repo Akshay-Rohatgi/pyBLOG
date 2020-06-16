@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% block head %}
     <title>{% block title %}{% endblock title %}pyBLOG</title>
@@ -10,7 +11,7 @@
     <meta http-equiv="Expires" content="0" />
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rokkitt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -24,6 +25,29 @@
         crossorigin="anonymous"></script>
     {% endblock %}
 </head>
+
+<nav class="navbar navbar-expand-lg" style="background: rgb(106,129,196);
+background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%, rgba(55,33,95,1) 51%);">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <a class="navbar-brand" style="color: azure;" href="{{ url_for('main') }}">pyBLOG</a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" style="color: azure;" href="{{ url_for('home') }}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: azure;" href="{{ url_for('posts') }}">Posts</a>
+            </li> 
+        </ul>
+        <form action="post" class="form-inline my-2 my-lg-0">
+            <input style="background: rgba(55,33,95,1); color: azure;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
 
 {% block content %}{% endblock%}
 

@@ -11,8 +11,12 @@ def md5(text):
 app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
+def main():
+    return render_template('index.html')
+
+@app.route('/home')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():

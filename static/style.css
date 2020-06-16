@@ -1,0 +1,12 @@
+html {
+    font-family: 'Rokkitt', serif;
+}
+
+.banner {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
