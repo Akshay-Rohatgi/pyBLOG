@@ -21,8 +21,10 @@ def get_all_post_contents():
     conn = sql.connect(db_path)
     c = conn.cursor()
     try:
-        c.execute("SELECT post_content FROM Posts")
+        c.execute("SELECT post_title, post_author, post_date, post_content FROM Posts")
     except: 
         return False
     
-    return c.fetchall()
+    try:
+        return c.fetchall()
+    except: return False

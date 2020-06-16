@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, g
-from db import check_login
+from db import check_login, get_all_post_contents
 from jinja2 import Template
 import hashlib
 
@@ -18,15 +18,16 @@ def home():
 def login():
     if request.method == 'POST':
         hashed_password = md5(request.form['password'])
+        if check_login(request.form['username']) == False:
+            return render_template('login.html')
         if check_login(request.form['username']) == hashed_password:
             return render_template('panel.html')
-        if check_login(request.form['username']) == None:
-            return render_template('login.html')
     return render_template('login.html')
 
 @app.route('/posts')
 def posts():
-    return render_template('posts.html')
+    posts = get_all_post_contents()
+    return render_template('posts.html', posts=posts)
 
 @app.route('/panel')
 def panel():
