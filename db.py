@@ -26,7 +26,3 @@ def get_post_contents():
         return False
     
     return c.fetchall()
-
-print(get_post_contents())
-for line in get_post_contents():
-    print(line[0])
