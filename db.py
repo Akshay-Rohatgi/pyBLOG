@@ -16,7 +16,7 @@ def check_login(username):
     except:
         return False
 
-def get_post_contents():
+def get_all_post_contents():
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)
     c = conn.cursor()
