@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request, g
-from db import check_login, get_all_post_contents, get_first_admin
+from flask_login import login_required, logout_user, login_user
+from db import check_login, get_all_post_contents, get_first_admin, get_main_content
 from jinja2 import Template
 import hashlib
 
@@ -12,13 +13,10 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 
 @app.route('/')
 def main():
+    if get_main_content() != False:
+        content = get_main_content()
     name = get_first_admin()
-    return render_template('index.html', name=name)
-
-@app.route('/home')
-def home():
-    name = get_first_admin()
-    return render_template('index.html', name=name)
+    return render_template('index.html', name=name, content=content)
 
 @app.route('/login', methods=['GET','POST'])
 def login():

@@ -138,3 +138,31 @@ def get_first_admin():
         c.execute("Select name From Admin LIMIT 1")
         return c.fetchone()[0]
     except: return False
+
+def get_main_content():
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try:
+        c.execute("Select main_content FROM Settings")
+        return c.fetchall()[0][0]
+    except: return False
+
+def change_main_content(new_content):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try: 
+        c.execute("Select main_content FROM Settings")
+        check = c.fetchall()[0][0]
+    except: return False
+
+    try:
+        c.execute("UPDATE Settings SET main_content='" + new_content + "' WHERE main_content='" + check + "'")
+        conn.commit()
+        conn.close()
+        return True
+    except: return False
+
