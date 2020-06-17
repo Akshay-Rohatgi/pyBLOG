@@ -3,14 +3,24 @@
 {% block content %}
 
 <body>
-{% for post in posts %}
+    {% for post in posts %}
 
-<p>title: {{ post[0] }}</p>
-<p>author: {{ post[1] }}</p>
-<p>date: {{ post[2] }}</p>
-<p>{{ post[3] }}</p>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="post">
+                <p>test</p>
+            </div>            
+        </div>
+    </div>
 
-{% endfor %}
+    <!-- <div class="container-fluid">
+        <p>title: {{ post[0] }}</p>
+        <p>author: {{ post[1] }}</p>
+        <p>date: {{ post[2] }}</p>
+        <p>{{ post[3] }}</p>
+    </div> -->
+
+    {% endfor %}
 </body>
 
 {% endblock %}

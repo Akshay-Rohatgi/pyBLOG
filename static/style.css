@@ -10,3 +10,10 @@ html {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.post {
+    border-collapse: collapse;
+	width: 600px;
+	margin: 0 auto;	
+	background-color: greenyellow;
+}

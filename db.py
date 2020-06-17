@@ -166,3 +166,30 @@ def change_main_content(new_content):
         return True
     except: return False
 
+def get_welcome_message():
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try:
+        c.execute("Select welcome_message FROM Settings")
+        return c.fetchall()[0][0]
+    except: return False
+
+def change_welcome_message(new_message):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try: 
+        c.execute("Select welcome_message FROM Settings")
+        check = c.fetchall()[0][0]
+    except: return False
+
+    try:
+        c.execute("UPDATE Settings SET main_content='" + new_message + "' WHERE main_content='" + check + "'")
+        conn.commit()
+        conn.close()
+        return True
+    except: return False
+
