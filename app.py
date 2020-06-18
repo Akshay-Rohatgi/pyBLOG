@@ -1,4 +1,5 @@
-from flask import Flask, render_template, redirect, url_for, request, g
+from flask import Flask, render_template, redirect, url_for, request, g, session
+import flask
 from flask_login import login_required, logout_user, login_user
 from db import check_login, get_all_post_contents, get_first_admin, get_main_content
 from jinja2 import Template
@@ -12,7 +13,7 @@ def md5(text):
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def main():
     if get_main_content() != False:
         content = get_main_content()
@@ -24,19 +25,24 @@ def login():
     if request.method == 'POST':
         hashed_password = md5(request.form['password'])
         if check_login(request.form['username']) == False:
-            return render_template('login.html')
+            error = True
+            return render_template('login.html', error=error)
         if check_login(request.form['username']) == hashed_password:
             return render_template('panel.html')
     return render_template('login.html')
 
-@app.route('/posts')
+@app.route('/posts', methods=['GET','POST'])
 def posts():
     posts = get_all_post_contents()
     return render_template('posts.html', posts=posts)
 
-@app.route('/panel')
+@app.route('/panel', methods=['GET','POST'])
 def panel():
     return render_template('panel.html')
+
+@app.route('/results', methods=['GET','POST'])
+def results():
+    return render_template('results.html')
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 5000, debug=True)
