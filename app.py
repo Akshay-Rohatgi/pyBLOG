@@ -3,6 +3,7 @@ from flask_login import login_required, logout_user, login_user
 from db import check_login, get_all_post_contents, get_first_admin, get_main_content
 from jinja2 import Template
 import hashlib
+from datetime import datetime
 
 def md5(text):
     hash_object = hashlib.md5(text.encode())

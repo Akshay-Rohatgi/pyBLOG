@@ -13,7 +13,27 @@ html {
 
 .post {
     border-collapse: collapse;
-	width: 600px;
+	width: 1600px;
 	margin: 0 auto;	
-	background-color: greenyellow;
+}
+
+.post h1{
+    font-size: 30px;
+    margin-top: 20px;
+    border-bottom: 6px solid #6495ED;
+    margin-bottom: 20px;
+    color: #6495ED;
+}
+
+.post h2{
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    padding: 0px 0;
+    color: #6495ED;
+    font-weight: bold;
+}
+
+.textbox {
+    
 }
