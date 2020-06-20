@@ -7,7 +7,6 @@ import hashlib
 from datetime import datetime
 
 #temp fix
-logged_in = False
 
 def md5(text):
     hash_object = hashlib.md5(text.encode())
@@ -31,8 +30,7 @@ def login():
             error = True
             return render_template('login.html', error=error)
         if check_login(request.form['username']) == hashed_password:
-            logged_in = True
-            return panel(logged_in)
+            return panel()
     return render_template('login.html')
 
 @app.route('/posts', methods=['GET','POST'])
@@ -41,11 +39,8 @@ def posts():
     return render_template('posts.html', posts=posts)
 
 @app.route('/panel', methods=['GET','POST'])
-def panel(logged_in):
-    if logged_in == True:
+def panel():
         return render_template('panel.html')
-    else:
-        return login()
 
 @app.route('/results', methods=['GET','POST'])
 def results():
