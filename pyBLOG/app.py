@@ -89,5 +89,5 @@ def logout():
     return redirect(url_for('main'))
 
 if __name__ == '__main__':
-    app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQW%!'
+    app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQu89327493e8923y1eh3e283uyyw8ueh1273eh23ouwijwey892uj1hjwjjwjjj893eeeBBUIwi2sdhnjw8hu2pja8usjW%!'
     app.run(host = '0.0.0.0', port = 5000, debug=True)
