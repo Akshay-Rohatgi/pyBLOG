@@ -1,12 +1,12 @@
 from flask import Flask, render_template, redirect, url_for, request, g, session
 import flask
-from flask_login import login_required, logout_user, login_user
+from flask_login import LoginManager, login_required, logout_user, login_user
 from db import check_login, get_all_post_contents, get_first_admin, get_main_content
 from jinja2 import Template
 import hashlib
 from datetime import datetime
 
-#temp fix
+
 
 def md5(text):
     hash_object = hashlib.md5(text.encode())
@@ -14,6 +14,7 @@ def md5(text):
     return md5_hash
 
 app = Flask(__name__, static_folder='static', static_url_path='')
+login_manager = LoginManager()
 
 @app.route('/', methods=['GET','POST'])
 def main():
@@ -30,7 +31,8 @@ def login():
             error = True
             return render_template('login.html', error=error)
         if check_login(request.form['username']) == hashed_password:
-            return panel()
+            session['username'] = request.form['username']
+            return redirect(url_for('panel'))
     return render_template('login.html')
 
 @app.route('/posts', methods=['GET','POST'])
@@ -40,11 +42,21 @@ def posts():
 
 @app.route('/panel', methods=['GET','POST'])
 def panel():
+    if 'username' in session:
         return render_template('panel.html')
+    else:
+        return redirect(url_for('login'))
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect(url_for('main'))
 
 @app.route('/results', methods=['GET','POST'])
 def results():
     return render_template('results.html')
 
 if __name__ == '__main__':
+    app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQW%!'
     app.run(host = '0.0.0.0', port = 5000, debug=True)
