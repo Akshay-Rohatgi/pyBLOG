@@ -39,8 +39,8 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
                 <a class="nav-link" style="color: azure;" href="{{ url_for('posts') }}">Posts</a>
             </li> 
         </ul>
-        <form action="post" class="form-inline my-2 my-lg-0">
-            <input style="background: rgba(55,33,95,1); color: azure;" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form method="post" class="form-inline my-2 my-lg-0">
+            <input value="{{ request.form.search }}" style="background: rgba(55,33,95,1); color: azure;" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
             <button style="background: rgba(55,33,95,1); color: azure;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         <li class="nav-item">

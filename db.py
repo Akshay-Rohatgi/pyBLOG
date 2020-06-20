@@ -97,9 +97,14 @@ def get_specific_post(post_title):
         c.execute("SELECT post_title, post_author, post_date, post_content FROM Posts WHERE post_title='" + post_title + "'")
     except: 
         return False
-    
+    # print(c.fetchall())
+    # print(len(c.fetchall()))
     try:
-        return c.fetchall()[0]
+        returned = c.fetchall()
+        if len(returned) > 0:
+            return returned
+        else:
+            return False
     except:
         conn.close() 
         return False

@@ -31,7 +31,7 @@ c.execute("""CREATE TABLE "Settings" (
 
 #pass = default_pass
 c.execute("INSERT INTO Admin VALUES ('admin_default', 'Linus Torvalds', 'b827ae8d71bf3ab400e3822a16041749')")
-c.execute("INSERT INTO Posts VALUES ('My first Post!', 'Linus Torvalds', '6/15/2020', 'This is my first post, I am so excited to see what I can do with pyBLOG!')")
+c.execute("INSERT INTO Posts VALUES ('test_post', 'Linus Torvalds', '6/15/2020', 'This is my first post, I am so excited to see what I can do with pyBLOG!')")
 c.execute("INSERT INTO Posts VALUES ('This is the second post', 'Linus Torvalds', '6/16/2020', 'This is a second post, I am loving pyBLOG so far!')")
 c.execute("INSERT INTO Settings VALUES ('Hello and welcome to my pyBLOG!')")
 
