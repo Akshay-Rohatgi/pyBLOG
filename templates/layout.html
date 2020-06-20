@@ -38,6 +38,11 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
             <li class="nav-item">
                 <a class="nav-link" style="color: azure;" href="{{ url_for('posts') }}">Posts</a>
             </li> 
+            {% if username in session['username'] %}
+            <li class="nav-item">
+                <a class="nav-link" style="color: azure;" href="{{ url_for('panel') }}">Panel</a>
+            </li>
+            {% endif %}
         </ul>
         <form method="post" class="form-inline my-2 my-lg-0">
             <input value="{{ request.form.search }}" style="background: rgba(55,33,95,1); color: azure;" class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
@@ -45,7 +50,12 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
         </form>
         <li class="nav-item">
             <a class="nav-link" style="color: azure;" href="{{ url_for('login') }}">login</a>
-        </li> 
+        </li>
+        {% if username in session['username'] %}
+        <li class="nav-item">
+            <a class="nav-link" style="color: azure;" href="{{ url_for('logout') }}">Logout</a>
+        </li>
+        {% endif %}
     </div>
 </nav>
 

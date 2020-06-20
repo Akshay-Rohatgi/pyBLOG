@@ -22,6 +22,11 @@ def main():
         content = get_main_content()
     name = get_first_admin()
 
+    try:
+        username = session['username']
+    except:
+        username = None
+
     if request.method == 'POST':
         search_term = request.form['search']
         if get_specific_post(search_term) == False or get_specific_post(search_term) == '[]':
@@ -31,10 +36,16 @@ def main():
             posts = get_specific_post(search_term)
             return render_template('posts.html', posts=posts)
 
-    return render_template('index.html', name=name, content=content)
+    return render_template('index.html', name=name, content=content, username=username)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+
+    try:
+        username = session['username']
+    except:
+        username = None
+
     if request.method == 'POST':
         hashed_password = md5(request.form['password'])
         if check_login(request.form['username']) == False:
@@ -43,48 +54,39 @@ def login():
         if check_login(request.form['username']) == hashed_password:
             session['username'] = request.form['username']
             return redirect(url_for('panel'))
-        
-        if len(request.form['search']) > 0:
-            search_term = request.form['search']
-        
-        if get_specific_post(search_term) == False or get_specific_post(search_term) == '[]':
-            error = True
-            return render_template('posts.html', error=error)
-        else:
-            posts = get_specific_post(search_term)
-            return render_template('posts.html', posts=posts)
 
-    return render_template('login.html')
+    return render_template('login.html', username=username)
 
 @app.route('/posts', methods=['GET','POST'])
 def posts():
+    try:
+        username = session['username']
+    except:
+        username = None
+
     posts = get_all_post_contents()
     if request.method == 'POST':
         search_term = request.form['search']
         if get_specific_post(search_term) == False or get_specific_post(search_term) == '[]':
             error = True
-            return render_template('posts.html', error=error)
+            return render_template('posts.html', error=error, username=username)
         else:
             posts = get_specific_post(search_term)
-            return render_template('posts.html', posts=posts)
-    return render_template('posts.html', posts=posts)
+            return render_template('posts.html', posts=posts, username=username)
+    return render_template('posts.html', posts=posts, username=username)
 
 @app.route('/panel', methods=['GET','POST'])
 def panel():
     if 'username' in session:
-        return render_template('panel.html')
+        username = session['username']
+        return render_template('panel.html', username=username)
     else:
         return redirect(url_for('login'))
 
 @app.route('/logout')
 def logout():
-    # remove the username from the session if it's there
     session.pop('username', None)
     return redirect(url_for('main'))
-
-@app.route('/results', methods=['GET','POST'])
-def results():
-    return render_template('posts.html', posts=posts)
 
 if __name__ == '__main__':
     app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQW%!'
