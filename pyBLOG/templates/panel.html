@@ -1,7 +1,15 @@
-{% extends "layout.html" %}
+{% extends "admin_layout.html" %}
 
 {% block content %}
+
 <body>
-<p>it works!</p>
+    <nav class="navbar navbar-light bg-light">
+        <a style="color: #17a2b8;" class="navbar-brand" href="{{ url_for('main') }}">Back to pyBLOG</a>
+        <a style="color: #17a2b8;" class="navbar-brand" href="{{ url_for('new') }}">Add a post</a>
+    </nav>
+
+
+
+
 </body>
 {% endblock %}

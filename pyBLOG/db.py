@@ -1,5 +1,6 @@
 import sqlite3 as sql
-import hashlib 
+import hashlib
+from datetime import datetime
 
 db_path = 'db_folder/database.db'
 
@@ -198,3 +199,17 @@ def change_welcome_message(new_message):
         return True
     except: return False
 
+def create_new_post(title, content):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    author = get_first_admin()
+    date = datetime.now().date()
+    
+    try:
+        c.execute('''INSERT INTO Posts (post_title, post_author, post_date, post_content) VALUES (?,?,?,?)''', (title, author, date, content))
+        conn.commit()
+        return True
+    except: 
+        return False

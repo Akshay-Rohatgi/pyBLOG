@@ -1,11 +1,10 @@
+from db import check_login, get_all_post_contents, get_first_admin, get_main_content, get_specific_post, create_new_post
 from flask import Flask, render_template, redirect, url_for, request, g, session
-import flask
 from flask_login import LoginManager, login_required, logout_user, login_user
-from db import check_login, get_all_post_contents, get_first_admin, get_main_content, get_specific_post
+from datetime import datetime
 from jinja2 import Template
 import hashlib
-from datetime import datetime
-
+import flask
 
 
 def md5(text):
@@ -87,6 +86,28 @@ def panel():
 def logout():
     session.pop('username', None)
     return redirect(url_for('main'))
+
+@app.route('/newpost', methods=['GET','POST'])
+def new():
+    if request.method == 'POST':
+        print(request.form['title'])
+        print(request.form['content'])
+        try:
+            if create_new_post(request.form['title'], request.form['content']) == False:
+                error = True
+            else:
+                error = False
+        except:
+            error = True    
+            return render_template('newpost.html', error=error)
+
+    if 'username' in session:
+        username = session['username']
+        return render_template('newpost.html', username=username)
+    else:
+        return redirect(url_for('login'))
+    
+    
 
 if __name__ == '__main__':
     app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQu89327493e8923y1eh3e283uyyw8ueh1273eh23ouwijwey892uj1hjwjjwjjj893eeeBBUIwi2sdhnjw8hu2pja8usjW%!'

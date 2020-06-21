@@ -3,19 +3,7 @@
 {% block content %}
 
 <body>
-    {% if username in session['username'] %}
-    <div class="card my-4">
-        <h5 class="card-header">New Post:</h5>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <textarea class="form-control" rows="3"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        </div>
-      </div>
-    {% endif %}
+
     {% if error == True %}
     <div class="alert alert-danger alert-dismissible fade show">
         <strong>Error!</strong> The post you searched for may not exist
