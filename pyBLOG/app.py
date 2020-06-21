@@ -1,4 +1,4 @@
-from db import check_login, get_all_post_contents, get_first_admin, get_main_content, get_specific_post, create_new_post
+from db import check_login, get_all_post_contents, get_first_admin, get_main_content, get_specific_post, create_new_post, delete_post
 from flask import Flask, render_template, redirect, url_for, request, g, session
 from flask_login import LoginManager, login_required, logout_user, login_user
 from datetime import datetime
@@ -87,26 +87,30 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('main'))
 
-@app.route('/newpost', methods=['GET','POST'])
-def new():
+@app.route('/post_man', methods=['GET','POST'])
+def post_man():
+
     if request.method == 'POST':
-        print(request.form['title'])
-        print(request.form['content'])
-        try:
+
+        if request.form.get('title', None) != None and request.form.get('content', None) != None:
             if create_new_post(request.form['title'], request.form['content']) == False:
                 error = True
             else:
                 error = False
-        except:
-            error = True    
-            return render_template('newpost.html', error=error)
+                return render_template('post_man.html', error=error)
+
+        if request.form.get('delete', None) != None:
+            if delete_post(request.form['delete']) == False:
+                error = True
+            else:
+                error = False
+                return render_template('post_man.html', error=error)
 
     if 'username' in session:
         username = session['username']
-        return render_template('newpost.html', username=username)
+        return render_template('post_man.html', username=username)
     else:
         return redirect(url_for('login'))
-    
     
 
 if __name__ == '__main__':

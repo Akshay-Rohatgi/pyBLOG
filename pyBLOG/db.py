@@ -213,3 +213,15 @@ def create_new_post(title, content):
         return True
     except: 
         return False
+
+def delete_post(title):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try:
+        c.execute("DELETE FROM Posts WHERE post_title='" + title + "'")    
+        conn.commit()
+        return True
+    except:
+        return False
