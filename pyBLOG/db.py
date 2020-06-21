@@ -172,6 +172,57 @@ def change_main_content(new_content):
         return True
     except: return False
 
+def change_bio(new_bio):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try: 
+        c.execute("Select bio FROM Settings")
+        check = c.fetchall()[0][0]
+    except: return False
+
+    try:
+        c.execute("UPDATE Settings SET bio='" + new_bio + "' WHERE bio='" + check + "'")
+        conn.commit()
+        conn.close()
+        return True
+    except: return False
+
+def change_city(new_city):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try: 
+        c.execute("Select city FROM Settings")
+        check = c.fetchall()[0][0]
+    except: return False
+
+    try:
+        c.execute("UPDATE Settings SET city='" + new_city + "' WHERE city='" + check + "'")
+        conn.commit()
+        conn.close()
+        return True
+    except: return False
+
+def change_country(new_country):
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try: 
+        c.execute("Select country FROM Settings")
+        check = c.fetchall()[0][0]
+    except: return False
+
+    try:
+        c.execute("UPDATE Settings SET country='" + new_country + "' WHERE country='" + check + "'")
+        conn.commit()
+        conn.close()
+        return True
+    except: return False
+
 def get_welcome_message():
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)

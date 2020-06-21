@@ -26,6 +26,9 @@ c.execute("""CREATE TABLE "Posts" (
 
 c.execute("""CREATE TABLE "Settings" (
             "main_content"  TEXT NOT NULL,
+            "bio" TEXT,
+            "city" Text,
+            "country" Text,
             PRIMARY KEY ("main_content")
             );""")
 
@@ -33,7 +36,7 @@ c.execute("""CREATE TABLE "Settings" (
 c.execute("INSERT INTO Admin VALUES ('admin_default', 'Linus Torvalds', 'b827ae8d71bf3ab400e3822a16041749')")
 c.execute("INSERT INTO Posts VALUES ('test_post', 'Linus Torvalds', '2020-6-15', 'This is my first post, I am so excited to see what I can do with pyBLOG!')")
 c.execute("INSERT INTO Posts VALUES ('This is the second post', 'Linus Torvalds', '2020-6-16', 'This is a second post, I am loving pyBLOG so far!')")
-c.execute("INSERT INTO Settings VALUES ('Hello and welcome to my pyBLOG!')")
+c.execute("INSERT INTO Settings VALUES ('Hello and welcome to my pyBLOG!', 'I invented git and linux', 'Portland', 'The United States of America')")
 
 conn.commit()
 conn.close()

@@ -4,20 +4,6 @@
 
 <body>
 
-    {% if error == True %}
-    <div class="alert alert-danger alert-dismissible fade show">
-        <strong>Error!</strong> The post was not created!
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>
-    {% endif %}
-
-    {% if error == False %}
-    <div class="alert alert-primary alert-dismissible fade show">
-        <strong>Error!</strong> The post was created!
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
-    </div>
-    {% endif %}
-
     <nav class="navbar navbar-light bg-light">
         <a style="color: #17a2b8;" class="navbar-brand" href="{{ url_for('main') }}">Back to pyBLOG</a>
         <a style="color: #17a2b8;" class="navbar-brand" href="{{ url_for('panel') }}">Panel</a>
@@ -49,8 +35,8 @@
             <form method="post">
                 <div class="form-group">
                     <label for="delete" class="text-info">Post Title:</label><br>
-                    <textarea value="{{ request.form.delete }}" name="delete" id="delete" type="text" class="form-control" rows="1"
-                        placeholder="Post Title to delete"></textarea>
+                    <textarea value="{{ request.form.delete }}" name="delete" id="delete" type="text"
+                        class="form-control" rows="1" placeholder="Post Title to delete"></textarea>
                 </div>
                 <button type="submit" style="background-color: #17a2b8; border-color: #17a2b8;" value="submit"
                     class="btn btn-primary">Delete Post</button>
