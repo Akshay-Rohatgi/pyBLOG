@@ -1,4 +1,4 @@
-from db import check_login, get_all_post_contents, get_first_admin, get_main_content, change_main_content, get_specific_post, create_new_post, delete_post, change_bio, change_city, change_country
+from db import check_login, get_all_post_contents, get_first_admin, get_main_content, change_main_content, get_specific_post, create_new_post, delete_post, change_bio, change_city, change_country, get_profile_things
 from flask import Flask, render_template, redirect, url_for, request, g, session
 from flask_login import LoginManager, login_required, logout_user, login_user
 from datetime import datetime
@@ -155,6 +155,32 @@ def account_man():
         return redirect(url_for('login'))
 
 
+@app.route('/about', methods=['GET','POST'])
+def about():
+
+    try:
+        username = session['username']
+    except:
+        username = None
+
+    if request.method == 'POST':
+        search_term = request.form['search']
+        if get_specific_post(search_term) == False or get_specific_post(search_term) == '[]':
+            error = True
+            return render_template('posts.html', error=error)
+        else:
+            posts = get_specific_post(search_term)
+            return render_template('posts.html', posts=posts)
+        
+    name = get_first_admin()
+    profile_data = get_profile_things()
+    if profile_data != None:
+        error = True
+        return render_template('about.html', profile_data=profile_data, username=username, error=error, name=name)
+    else:
+        error = False 
+        return render_template('about.html', error=error, username=username)
+
 if __name__ == '__main__':
-    app.secret_key = 'ba9&plln2_1siq984509mjd8340jjhhhHUH@&#$tQu89327493e8923y1eh3e283uyyw8ueh1273eh23ouwijwey892uj1hjwjjwjjj893eeeBBUIwi2sdhnjw8hu2pja8usjW%!'
+    app.secret_key = '9333213d144$4fd34))ewwww99j320@&#$88h3mjmmp;lakb3p09jjxja8^%!'
     app.run(host = '0.0.0.0', port = 5000, debug=True)

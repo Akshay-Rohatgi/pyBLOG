@@ -155,6 +155,16 @@ def get_main_content():
         return c.fetchall()[0][0]
     except: return False
 
+def get_profile_things():
+    db_path = 'db_folder/database.db'
+    conn = sql.connect(db_path)
+    c = conn.cursor()
+
+    try:
+        c.execute("Select * FROM Settings")
+        return c.fetchall()[0]
+    except: return False
+
 def change_main_content(new_content):
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)

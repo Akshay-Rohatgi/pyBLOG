@@ -37,7 +37,10 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
                 <a class="nav-link" style="color: azure;" href="{{ url_for('posts') }}">Posts</a>
-            </li> 
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="color: azure;" href="{{ url_for('about') }}">About</a>
+            </li>
             {% if username in session['username'] %}
             <li class="nav-item">
                 <a class="nav-link" style="color: azure;" href="{{ url_for('panel') }}">Panel</a>
@@ -45,12 +48,16 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
             {% endif %}
         </ul>
         <form method="post" class="md-form active-pink active-pink-2 mb-3 mt-0 form-inline my-2 my-lg-0">
-            <input value="{{ request.form.search }}" style="background: rgba(55,33,95,1); color: azure;" class="form-control mr-sm-2" type="search" name="search" placeholder="Search posts" aria-label="Search">
-            <button style="color: aquamarine; background: transparent;" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input value="{{ request.form.search }}" style="background: rgba(55,33,95,1); color: azure;"
+                class="form-control mr-sm-2" type="search" name="search" placeholder="Search posts" aria-label="Search">
+            <button style="color: aquamarine; background: transparent;" class="btn btn-outline-success my-2 my-sm-0"
+                type="submit">Search</button>
         </form>
+        {% if username not in session['username'] %}
         <li class="nav-item">
             <a class="nav-link" style="color: azure;" href="{{ url_for('login') }}">Login</a>
         </li>
+        {% endif %}
         {% if username in session['username'] %}
         <li class="nav-item">
             <a class="nav-link" style="color: azure;" href="{{ url_for('logout') }}">Logout</a>
