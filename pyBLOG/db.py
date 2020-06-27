@@ -38,7 +38,7 @@ def get_all_post_contents():
         conn.close() 
         return False
 
-def change_username(current_username, new_username, password):
+def change_username(current_username, password, new_username):
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)
     c = conn.cursor()
@@ -215,6 +215,7 @@ def change_city(new_city):
         conn.close()
         return True
     except: return False
+
 
 def change_country(new_country):
     db_path = 'db_folder/database.db'

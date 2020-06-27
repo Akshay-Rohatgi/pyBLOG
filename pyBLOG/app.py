@@ -145,7 +145,13 @@ def post_man():
 def account_man():
 
     if request.method == 'POST':
-        print('placeholder')
+
+        if request.form.get('username', None) != None and request.form('password', None) != None:
+
+            if request.form.get('new_username', None) != None:
+                
+
+        return render_template('panel.html', error=error)
 
     if 'username' in session:
         username = session['username']

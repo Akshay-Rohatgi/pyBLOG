@@ -15,13 +15,25 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="" method="post">
-                            <h3 class="text-center text-info">Update your username</h3>
+                            <h3 class="text-center text-info">Update your information</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">New Username:</label><br>
-                                <input type="text" name="username" placeholder="Username" id="username" class="form-control" value="{{request.form.username }}">
+                                <label for="new_username" class="text-info">New Username:</label><br>
+                                <input type="text" name="new_username" placeholder="New Username" id="new_username" class="form-control" value="{{request.form.new_username }}">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
+                                <label for="new_name" class="text-info">New Name:</label><br>
+                                <input type="text" name="new_name" placeholder="New name" id="new_name" class="form-control" value="{{request.form.new_name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password" class="text-info">New Password:</label><br>
+                                <input type="password" name="new_password" placeholder="New Password" id="new_password" class="form-control" value="{{request.form.new_password }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Current Username <span style="color: red;"> [Required] </span>: </label><br>
+                                <input type="text" name="username" placeholder="Current Username" id="username" class="form-control" value="{{request.form.username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Current Password <span style="color: red;"> [Required] </span></label><br>
                                 <input type="password" name="password" placeholder="Password" id="password" class="form-control" value="{{request.form.password }}">
                             </div>
                             <div class="form-group">
@@ -34,7 +46,7 @@
         </div>
     </div>
 
-    <div id="login">
+    <!-- <div id="login">
         <h3 class="text-center text-white pt-5"></h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -84,7 +96,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 </body>
 {% endblock %}
