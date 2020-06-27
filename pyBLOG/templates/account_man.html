@@ -8,6 +8,21 @@
         <a style="color: #17a2b8;" class="navbar-brand" href="{{ url_for('panel') }}">Panel</a>
     </nav>
 
+    
+    {% if error == True %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <strong>Error!</strong> problem updating user account data
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    
+    {% if error == False%}
+    <div class="alert alert-primary alert-dismissible fade show">
+        <strong>Sucess!</strong> user account data updated!
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+
     <div id="login">
         <h3 class="text-center text-white pt-5"></h3>
         <div class="container">
@@ -26,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="new_password" class="text-info">New Password:</label><br>
-                                <input type="password" name="new_password" placeholder="New Password" id="new_password" class="form-control" value="{{request.form.new_password }}">
+                                <input type="text" name="new_password" placeholder="New Password" id="new_password" class="form-control" value="{{request.form.new_password }}">
                             </div>
                             <div class="form-group">
                                 <label for="username" class="text-info">Current Username <span style="color: red;"> [Required] </span>: </label><br>

@@ -60,7 +60,7 @@ background: linear-gradient(90deg, rgba(106,129,196,1) 0%, rgba(94,100,178,1) 9%
         {% endif %}
         {% if username in session['username'] %}
         <li class="nav-item">
-            <a class="nav-link" style="color: azure;" href="{{ url_for('logout') }}">Logout</a>
+            <a class="nav-link" onclick=""style="color: azure;" href="{{ url_for('logout') }}">Logout</a>
         </li>
         {% endif %}
     </div>

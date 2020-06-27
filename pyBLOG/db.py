@@ -90,6 +90,8 @@ def change_password(current_username, password, new_password):
 
     return True
 
+# print(change_password('admin_default', 'default_pass', 'a'))
+
 def get_specific_post(post_title):
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)
@@ -110,7 +112,7 @@ def get_specific_post(post_title):
         conn.close() 
         return False
 
-def change_name(current_name, new_name, password):
+def change_name(current_name, password, new_name):
     db_path = 'db_folder/database.db'
     conn = sql.connect(db_path)
     c = conn.cursor()

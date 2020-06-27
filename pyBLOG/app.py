@@ -1,4 +1,4 @@
-from db import check_login, get_all_post_contents, get_first_admin, get_main_content, change_main_content, get_specific_post, create_new_post, delete_post, change_bio, change_city, change_country, get_profile_things
+from db import check_login, get_all_post_contents, get_first_admin, get_main_content, change_main_content, get_specific_post, create_new_post, delete_post, change_bio, change_city, change_country, get_profile_things, change_username, change_password, change_name
 from flask import Flask, render_template, redirect, url_for, request, g, session
 from flask_login import LoginManager, login_required, logout_user, login_user
 from datetime import datetime
@@ -146,12 +146,28 @@ def account_man():
 
     if request.method == 'POST':
 
-        if request.form.get('username', None) != None and request.form('password', None) != None:
+        if request.form.get('username', None) != None and request.form.get('password', None) != None and len(request.form.get('username', None)) > 0 and len(request.form.get('password', None)) > 0:
+            error = None
 
-            if request.form.get('new_username', None) != None:
-                
+            if request.form.get('new_username', None) != None and len(request.form.get('new_username', None)) > 0:
+                if change_username(request.form.get('username', None), request.form.get('password', None), request.form.get('new_username', None)) == False:
+                    error = True
+            
+            if request.form.get('new_name', None) != None and len(request.form.get('new_name', None)) > 0:
+                if change_name(get_first_admin(), request.form.get('password', None), request.form.get('new_name', None)) == False:
+                    error = True
 
-        return render_template('panel.html', error=error)
+            if request.form.get('new_password', None) != None and len(request.form.get('new_password', None)) > 0:
+                if change_password(request.form.get('username', None), request.form.get('password', None), request.form.get('new_password', None)) == False:
+                    error = True
+
+            return render_template('account_man.html', error=error, password_error=False)
+
+        else:
+
+            password_error = True
+            return render_template('account_man.html', password_error=password_error)
+
 
     if 'username' in session:
         username = session['username']
