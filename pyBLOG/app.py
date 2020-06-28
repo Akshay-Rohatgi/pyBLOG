@@ -46,6 +46,7 @@ def login():
         username = None
 
     if request.method == 'POST':
+
         hashed_password = md5(request.form['password'])
         if check_login(request.form['username']) == False:
             error = True
@@ -205,4 +206,4 @@ def about():
 
 if __name__ == '__main__':
     app.secret_key = '9333213d144$4fd34))ewwww99j320@&#$88h3mjmmp;lakb3p09jjxja8^%!'
-    app.run(host = '0.0.0.0', port = 5000, debug=True)
+    app.run(host = '0.0.0.0', port = 5000)
